@@ -164,16 +164,39 @@ class _FluttermojiCustomizerState extends State<FluttermojiCustomizer>
     );
   }
 
-  Container bottomNavBar(List<Widget> navbarWidgets) {
+  Container bottomNavBar(
+      List<Widget> navbarWidgets, List<AttributeItem> attributes) {
     return Container(
-      color: widget.theme.primaryBgColor,
-      child: TabBar(
-        controller: tabController,
-        isScrollable: true,
-        labelPadding: EdgeInsets.fromLTRB(0, 8, 0, 8),
-        indicatorColor: widget.theme.selectedIconColor,
-        indicatorPadding: EdgeInsets.all(2),
-        tabs: navbarWidgets,
+      height: 60,
+      // color: Colors.red,
+      margin: const EdgeInsets.fromLTRB(0, 12, 0, 4),
+      // decoration: BoxDecoration(
+      //   color: widget.theme.primaryBgColor,
+      //   borderRadius: BorderRadius.circular(20),
+      //   boxShadow: [
+      //     BoxShadow(
+      //       // ignore: deprecated_member_use
+      //       color: Colors.black.withOpacity(0.05),
+      //       blurRadius: 10,
+      //       offset: const Offset(0, -2),
+      //     ),
+      //   ],
+      // ),
+      child: Row(
+        children: [
+          // arrowButton(true),
+          Expanded(
+            child: TabBar(
+              dividerHeight: 0,
+              controller: tabController,
+              isScrollable: true,
+              labelPadding: const EdgeInsets.symmetric(horizontal: 8),
+              indicatorColor: Colors.transparent,
+              tabs: navbarWidgets,
+            ),
+          ),
+          // arrowButton(false),
+        ],
       ),
     );
   }
@@ -237,32 +260,17 @@ class _FluttermojiCustomizerState extends State<FluttermojiCustomizer>
       var attributeListLength =
           fluttermojiProperties[attribute.key!]!.property!.length;
 
-      /// Number of tiles per horizontal row,
-      int gridCrossAxisCount;
-
-      /// Set the number of tiles per horizontal row,
-      /// depending on the [attributeListLength]
-      if (attributeListLength < 12)
-        gridCrossAxisCount = 3;
-      else if (attributeListLength < 9)
-        gridCrossAxisCount = 2;
-      else
-        gridCrossAxisCount = 4;
-
       int? i = fluttermojiController.selectedOptions[attribute.key];
 
-      /// Build the main Tile Grid with all the options from the attribute
-      var _tileGrid = GridView.builder(
+      /// Build the main List with all the options from the attribute
+      var _tileGrid = ListView.builder(
         physics: widget.theme.scrollPhysics,
+        scrollDirection: Axis.horizontal,
         itemCount: attributeListLength,
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: gridCrossAxisCount,
-          crossAxisSpacing: 4.0,
-          mainAxisSpacing: 4.0,
-        ),
         itemBuilder: (BuildContext context, int index) => InkWell(
           onTap: () => onTapOption(index, i, attribute),
           child: Container(
+            width: size.width / 4,
             decoration: index == i
                 ? widget.theme.selectedTileDecoration
                 : widget.theme.unselectedTileDecoration,
@@ -276,27 +284,92 @@ class _FluttermojiCustomizerState extends State<FluttermojiCustomizer>
                 child: CupertinoActivityIndicator(),
               ),
             ),
-          ),
+          ).paddingOnly(left: 8),
         ),
       );
 
       /// Builds the icon for the attribute to be placed in the bottom row
-      var bottomNavWidget = Padding(
-          padding: EdgeInsets.symmetric(vertical: 2.0, horizontal: 12),
-          child: SvgPicture.asset(
-            attribute.iconAsset!,
-            package: 'fluttermoji',
-            height: attribute.iconsize ??
-                (widget.scaffoldHeight != null
-                    ? widget.scaffoldHeight! / heightFactor * 0.03
-                    : size.height * 0.03),
-            colorFilter: ColorFilter.mode(
-                attributeIndex == tabController.index
-                    ? widget.theme.selectedIconColor
-                    : widget.theme.unselectedIconColor,
-                BlendMode.srcIn),
-            semanticsLabel: attribute.title,
-          ));
+      var isSelected = attributeIndex == tabController.index;
+      var bottomNavWidget = isSelected
+          ? Stack(
+              alignment: Alignment.center,
+              children: [
+                Positioned.fill(
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: const Color(0xFF615ABE),
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                  ),
+                ),
+                Container(
+                  margin: const EdgeInsets.only(bottom: 5.0),
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 6.0, horizontal: 12),
+                  decoration: BoxDecoration(
+                    color: const Color(0xFF8275E3),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      SvgPicture.asset(
+                        attribute.iconAsset!,
+                        package: 'fluttermoji',
+                        height: attribute.iconsize ??
+                            (widget.scaffoldHeight != null
+                                ? widget.scaffoldHeight! / heightFactor * 0.03
+                                : size.height * 0.03),
+                        colorFilter:
+                            ColorFilter.mode(Colors.white, BlendMode.srcIn),
+                        semanticsLabel: attribute.title,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 8.0),
+                        child: Text(
+                          attribute.title,
+                          style: widget.theme.labelTextStyle.copyWith(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 14,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            )
+          : Container(
+              padding: const EdgeInsets.symmetric(vertical: 6.0, horizontal: 8),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  SvgPicture.asset(
+                    attribute.iconAsset!,
+                    package: 'fluttermoji',
+                    height: attribute.iconsize ??
+                        (widget.scaffoldHeight != null
+                            ? widget.scaffoldHeight! / heightFactor * 0.03
+                            : size.height * 0.03),
+                    colorFilter: ColorFilter.mode(
+                        widget.theme.unselectedIconColor, BlendMode.srcIn),
+                    semanticsLabel: attribute.title,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 8.0),
+                    child: Text(
+                      attribute.title,
+                      style: widget.theme.labelTextStyle.copyWith(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 14,
+                        color: widget.theme.unselectedIconColor,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            );
 
       /// Add all the initialized widgets to the state
       attributeGrids.add(_tileGrid);
@@ -308,16 +381,17 @@ class _FluttermojiCustomizerState extends State<FluttermojiCustomizer>
       clipBehavior: Clip.hardEdge,
       child: DefaultTabController(
         length: attributeGrids.length,
-        child: Scaffold(
-          key: const ValueKey('FMojiCustomizer'),
-          backgroundColor: widget.theme.secondaryBgColor,
-          appBar: appbar(attributes),
-          body: TabBarView(
-            physics: widget.theme.scrollPhysics,
-            controller: tabController,
-            children: attributeGrids,
-          ),
-          bottomNavigationBar: bottomNavBar(navbarWidgets),
+        child: Column(
+          children: [
+            bottomNavBar(navbarWidgets, attributes),
+            Expanded(
+              child: TabBarView(
+                physics: widget.theme.scrollPhysics,
+                controller: tabController,
+                children: attributeGrids,
+              ),
+            ),
+          ],
         ),
       ),
     );

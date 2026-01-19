@@ -20,6 +20,8 @@ final Map<String, FluttermojiPropertyItem> fluttermojiProperties = {
       FluttermojiPropertyItem(title: "Eyebrow", property: EyebrowType),
   "mouthType": FluttermojiPropertyItem(title: "Mouth", property: MouthType),
   "skinColor": FluttermojiPropertyItem(title: "Skin", property: SkinColor),
+  "graphicType":
+      FluttermojiPropertyItem(title: "Graphic", property: GraphicType),
 };
 
 /// Models the metadata needed for rendering widgets in the UI
@@ -179,6 +181,9 @@ const List<String> ClotheType = [
   'Overall',
   'Blazer + T-Shirt',
   'BlazerSweater',
+  'Blue Shirt',
+  'Green Shirt',
+  'Pink Shirt',
 ];
 
 const List<String> ClotheColor = [
@@ -242,6 +247,7 @@ const List<String> EyebrowType = [
   'UnibrowNatural',
   'UpDown',
   'UpDownNatural',
+  'FrownNatural',
 ];
 
 const List<String> MouthType = [

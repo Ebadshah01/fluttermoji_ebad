@@ -72,9 +72,19 @@ class FluttermojiController extends GetxController {
   }
 
   String _getFluttermojiProperty(String type) {
-    return fluttermojiProperties[type]!
-        .property!
-        .elementAt(selectedOptions[type] as int);
+    print("DEBUG: _getFluttermojiProperty(type: $type)");
+    var propertyItem = fluttermojiProperties[type];
+    if (propertyItem == null) {
+      print("DEBUG: CRITICAL ERROR - propertyItem is NULL for type: $type");
+    } else {
+      print(
+          "DEBUG: propertyItem title: ${propertyItem.title}, property list length: ${propertyItem.property?.length}");
+    }
+
+    var index = selectedOptions[type];
+    print("DEBUG: selectedOptions[$type] = $index");
+
+    return propertyItem!.property!.elementAt(index as int);
   }
 
   ///  Accepts a String [fluttermoji]
@@ -118,7 +128,7 @@ class FluttermojiController extends GetxController {
 <svg width="264px" height="280px" viewBox="0 0 264 280" version="1.1"
 xmlns="http://www.w3.org/2000/svg"
 xmlns:xlink="http://www.w3.org/1999/xlink">
-<desc>Fluttermoji on pub.dev</desc>
+<desc>Fluttermoji of fluttermoji</desc>
 <defs>
 <circle id="path-1" cx="120" cy="120" r="120"></circle>
 <path d="M12,160 C12,226.27417 65.72583,280 132,280 C198.27417,280 252,226.27417 252,160 L264,160 L264,-1.42108547e-14 L-3.19744231e-14,-1.42108547e-14 L-3.19744231e-14,160 L12,160 Z" id="path-3"></path>
@@ -156,19 +166,34 @@ xmlns:xlink="http://www.w3.org/1999/xlink">
   Future<Map<String?, int>> getFluttermojiOptions() async {
     SharedPreferences pref = await SharedPreferences.getInstance();
     String? _fluttermojiOptions = pref.getString('fluttermojiSelectedOptions');
-    if (_fluttermojiOptions == null || _fluttermojiOptions == '') {
-      Map<String?, int> _fluttermojiOptionsMap =
-          Map.from(defaultFluttermojiOptions);
-      await pref.setString(
-          'fluttermojiSelectedOptions', jsonEncode(_fluttermojiOptionsMap));
-      selectedOptions = _fluttermojiOptionsMap;
 
-      update();
-      return _fluttermojiOptionsMap;
+    Map<String?, int> _finalOptions = Map.from(defaultFluttermojiOptions);
+
+    if (_fluttermojiOptions != null && _fluttermojiOptions.isNotEmpty) {
+      try {
+        Map<String, dynamic> _storedOptions = jsonDecode(_fluttermojiOptions);
+        _storedOptions.forEach((key, value) {
+          if (value is int) {
+            _finalOptions[key] = value;
+          }
+        });
+      } catch (e) {
+        print("DEBUG: Error decoding fluttermojiSelectedOptions: $e");
+      }
     }
-    selectedOptions = Map.from(jsonDecode(_fluttermojiOptions));
+
+    selectedOptions = _finalOptions;
+
+    // If options were missing or corrupted, save the clean merged version
+    if (_fluttermojiOptions == null ||
+        _fluttermojiOptions.isEmpty ||
+        jsonEncode(_finalOptions) != _fluttermojiOptions) {
+      await pref.setString(
+          'fluttermojiSelectedOptions', jsonEncode(_finalOptions));
+    }
+
     update();
-    return Map.from(jsonDecode(_fluttermojiOptions));
+    return _finalOptions;
   }
 
   String? getComponentTitle(String attributeKey, int attriibuteValueIndex) {
