@@ -60,6 +60,7 @@ class _MyHomePageState extends State<MyHomePage> {
           SizedBox(
             height: 25,
           ),
+          Text("data", style: TextStyle(color: Colors.black),),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Text(
@@ -114,6 +115,7 @@ class NewPage extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 30),
                 child: FluttermojiCircleAvatar(
+
                   radius: 100,
                   backgroundColor: Colors.grey[200],
                 ),

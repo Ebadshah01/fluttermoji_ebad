@@ -149,11 +149,14 @@ class _FluttermojiCustomizerState extends State<FluttermojiCustomizer>
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
-    return SizedBox(
+    return
+     SizedBox(
       height: widget.scaffoldHeight ?? (size.height * heightFactor),
       width: widget.scaffoldWidth ?? size.width,
-      child: body(
+      child:       
+      body(
         attributes: List<AttributeItem>.generate(
+          
             attributesCount,
             (index) => AttributeItem(
                 iconAsset: widget.attributeIcons[index],
@@ -167,9 +170,10 @@ class _FluttermojiCustomizerState extends State<FluttermojiCustomizer>
   Container bottomNavBar(
       List<Widget> navbarWidgets, List<AttributeItem> attributes) {
     return Container(
-      height: 60,
+      // height: 70,
       // color: Colors.red,
-      margin: const EdgeInsets.fromLTRB(0, 12, 0, 4),
+
+      //margin: const EdgeInsets.fromLTRB(0, 12, 0, 4),
       // decoration: BoxDecoration(
       //   color: widget.theme.primaryBgColor,
       //   borderRadius: BorderRadius.circular(20),
@@ -182,60 +186,72 @@ class _FluttermojiCustomizerState extends State<FluttermojiCustomizer>
       //     ),
       //   ],
       // ),
-      child: Row(
-        children: [
-          // arrowButton(true),
-          Expanded(
-            child: TabBar(
+      child: TabBar(
+        tabAlignment: TabAlignment.start,
+        // indicatorWeight: 1,
               dividerHeight: 0,
               controller: tabController,
               isScrollable: true,
-              labelPadding: const EdgeInsets.symmetric(horizontal: 8),
+              // labelPadding: EdgeInsets.zero,
+              // labelPadding: const EdgeInsets.symmetric(horizontal: 0),
               indicatorColor: Colors.transparent,
               tabs: navbarWidgets,
             ),
-          ),
-          // arrowButton(false),
-        ],
-      ),
+      // Row(
+      //   children: [
+      //     // arrowButton(true),
+      //     Expanded(
+      //       child: TabBar(
+      //         dividerHeight: 0,
+      //         controller: tabController,
+      //         isScrollable: true,
+      //         labelPadding: const EdgeInsets.symmetric(horizontal: 8),
+      //         indicatorColor: Colors.transparent,
+      //         tabs: navbarWidgets,
+      //       ),
+      //     ),
+      //     // arrowButton(false),
+      //   ],
+      // ),
     );
   }
 
-  AppBar appbar(List<AttributeItem> attributes) {
-    return AppBar(
-      centerTitle: true,
-      elevation: 0,
-      backgroundColor: widget.theme.primaryBgColor,
-      automaticallyImplyLeading: false,
-      title: Text(
-        attributes[tabController.index].title,
-        style: widget.theme.labelTextStyle,
-        textAlign: TextAlign.center,
-      ),
-      leading: arrowButton(true),
-      actions: [
-        arrowButton(false),
-      ],
-    );
-  }
+  // AppBar appbar(List<AttributeItem> attributes) {
+  //   return AppBar(
+  //      leading: Container(color: Colors.red,height: 20,width: 20,),
+  //     centerTitle: true,
+  //     elevation: 0,
+  //     backgroundColor: widget.theme.primaryBgColor,
+  //     automaticallyImplyLeading: false,
+  //     title: Text(
+  //       attributes[tabController.index].title,
+  //       style: widget.theme.labelTextStyle,
+  //       textAlign: TextAlign.center,
+  //     ),
+  //   //  leading: arrowButton(true),
+  //     // actions: [
+  //     //   arrowButton(false),
+  //     // ],
+  //   );
+  // }
 
-  Widget arrowButton(bool isLeft) {
-    return Visibility(
-      visible: isLeft
-          ? tabController.index > 0
-          : tabController.index < attributesCount - 1,
-      child: IconButton(
-        // splashRadius: 20,
-        icon: Icon(
-          isLeft
-              ? Icons.arrow_back_ios_new_rounded
-              : Icons.arrow_forward_ios_rounded,
-          color: widget.theme.iconColor,
-        ),
-        onPressed: () => onArrowTap(isLeft),
-      ),
-    );
-  }
+  // Widget arrowButton(bool isLeft) {
+  //   return Visibility(
+  //     visible: isLeft
+  //         ? tabController.index > 0
+  //         : tabController.index < attributesCount - 1,
+  //     child: IconButton(
+  //       // splashRadius: 20,
+  //       icon: Icon(
+  //         isLeft
+  //             ? Icons.arrow_back_ios_new_rounded
+  //             : Icons.arrow_forward_ios_rounded,
+  //         color: widget.theme.iconColor,
+  //       ),
+  //       onPressed: () => onArrowTap(isLeft),
+  //     ),
+  //   );
+  // }
 
   /// Widget that renders an expanded layout for customization
   /// Accepts a [cardTitle] and a [attributes].
@@ -284,7 +300,7 @@ class _FluttermojiCustomizerState extends State<FluttermojiCustomizer>
                 child: CupertinoActivityIndicator(),
               ),
             ),
-          ).paddingOnly(left: 8),
+          ).paddingOnly(left: 8,top: 30),
         ),
       );
 
@@ -318,7 +334,7 @@ class _FluttermojiCustomizerState extends State<FluttermojiCustomizer>
                         package: 'fluttermoji',
                         height: attribute.iconsize ??
                             (widget.scaffoldHeight != null
-                                ? widget.scaffoldHeight! / heightFactor * 0.03
+                                ? widget.scaffoldHeight! / heightFactor * 0.05
                                 : size.height * 0.03),
                         colorFilter:
                             ColorFilter.mode(Colors.white, BlendMode.srcIn),
@@ -330,7 +346,7 @@ class _FluttermojiCustomizerState extends State<FluttermojiCustomizer>
                           attribute.title,
                           style: widget.theme.labelTextStyle.copyWith(
                             fontWeight: FontWeight.bold,
-                            fontSize: 14,
+                            fontSize: 18,
                             color: Colors.white,
                           ),
                         ),
@@ -350,7 +366,7 @@ class _FluttermojiCustomizerState extends State<FluttermojiCustomizer>
                     package: 'fluttermoji',
                     height: attribute.iconsize ??
                         (widget.scaffoldHeight != null
-                            ? widget.scaffoldHeight! / heightFactor * 0.03
+                            ? widget.scaffoldHeight! / heightFactor * 0.05
                             : size.height * 0.03),
                     colorFilter: ColorFilter.mode(
                         widget.theme.unselectedIconColor, BlendMode.srcIn),
@@ -362,7 +378,7 @@ class _FluttermojiCustomizerState extends State<FluttermojiCustomizer>
                       attribute.title,
                       style: widget.theme.labelTextStyle.copyWith(
                         fontWeight: FontWeight.bold,
-                        fontSize: 14,
+                        fontSize: 18,
                         color: widget.theme.unselectedIconColor,
                       ),
                     ),

@@ -13,7 +13,13 @@ import 'fluttermojiController.dart';
 class FluttermojiCircleAvatar extends StatelessWidget {
   final double radius;
   final Color? backgroundColor;
-  FluttermojiCircleAvatar({Key? key, this.radius = 75.0, this.backgroundColor})
+
+   /// Sends the current SVG string to the parent when available/updated
+  final ValueChanged<String>? onSvgReady;
+
+  FluttermojiCircleAvatar({Key? key, this.radius = 75.0, this.backgroundColor,
+    this.onSvgReady,
+  })
       : super(key: key);
 
   @override
@@ -26,14 +32,23 @@ class FluttermojiCircleAvatar extends StatelessWidget {
 
   GetX<FluttermojiController> buildGetX() {
     return GetX<FluttermojiController>(
+      
         init: FluttermojiController(),
         autoRemove: false,
         builder: (snapshot) {
+           // If you specifically want the SVG from options:
+        final svg = snapshot.fluttermoji.value;
+
           if (snapshot.fluttermoji.value.isEmpty) {
             return CupertinoActivityIndicator();
           }
+
+             // Emit to parent
+        onSvgReady?.call(svg);
+
           return SvgPicture.string(
-            snapshot.fluttermoji.value,
+           svg,
+            // snapshot.fluttermoji.value,
             height: radius * 1.6,
             semanticsLabel: "Your Fluttermoji",
             placeholderBuilder: (context) => Center(

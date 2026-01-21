@@ -52,7 +52,7 @@ const String emptySVGIcon = '''
 ''';
 
 const Map<String, int> defaultFluttermojiOptions = {
-  'topType': 24,
+  'topType': 13,
   'accessoriesType': 0,
   'hairColor': 1,
   'facialHairType': 0,
@@ -74,40 +74,19 @@ const List<String> FluttermojiStyle = [
 
 const List<String> TopType = [
   'Bald',
-  'Eyepatch',
-  'Hijab',
-  'Turban',
   'Hat',
-  'I\'m not bald',
-  'Flat',
-  'from School',
-  'Short n waved',
-  'Short n curly',
-  'The caesar',
-  'Another caeser',
-  'Short w/ dreads',
-  'Short w/ lots of dreads',
-  'Bob cut',
+  'Hijab',
   'Bun',
-  'Fro',
-  'Its not short',
   'Long (Female)',
   'Curvy',
-  'Shaggy',
-  'Short w/ frizzle',
-  'LongHairStraight',
   'LongHairStraight2',
   'LongHairStraightStrand',
   'Curly (Female)',
-  'Long w/ dreads',
   'Frida',
   'Fro w/ band',
-  'Long w/ shaved sides',
-  'Mia Wallace',
-  'WinterHat1',
   'WinterHat2',
   'Santa Hat',
-  'Santa Hat w/ ears',
+  'Cap'
 ];
 
 const List<String> AccessoriesType = [

@@ -221,7 +221,7 @@ xmlns:xlink="http://www.w3.org/1999/xlink">
 
       case 'topType':
         if (attributeValueIndex == 0) return emptySVGIcon;
-        return '''<svg width="20px" width="100px" height="100px" viewBox="10 0 250 250">''' +
+        return '''<svg width="20px" width="100px" height="100px" viewBox="10 10 250 250">''' +
             HairStyle.generateHairStyle(
                 hairType: TopType[attributeValueIndex!],
                 hColor: HairColor[selectedOptions['hairColor']])! +
