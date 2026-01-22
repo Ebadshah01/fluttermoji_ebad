@@ -364,12 +364,13 @@ class _FluttermojiCustomizerState extends State<FluttermojiCustomizer>
                   SvgPicture.asset(
                     attribute.iconAsset!,
                     package: 'fluttermoji',
+                    color: Colors.black.withOpacity(0.4),
                     height: attribute.iconsize ??
                         (widget.scaffoldHeight != null
                             ? widget.scaffoldHeight! / heightFactor * 0.05
                             : size.height * 0.03),
-                    colorFilter: ColorFilter.mode(
-                        widget.theme.unselectedIconColor, BlendMode.srcIn),
+                    // colorFilter: ColorFilter.mode(
+                    //     widget.theme.unselectedIconColor, BlendMode.srcIn),
                     semanticsLabel: attribute.title,
                   ),
                   Padding(
@@ -379,7 +380,7 @@ class _FluttermojiCustomizerState extends State<FluttermojiCustomizer>
                       style: widget.theme.labelTextStyle.copyWith(
                         fontWeight: FontWeight.bold,
                         fontSize: 18,
-                        color: widget.theme.unselectedIconColor,
+                        color: Colors.black.withOpacity(0.4),
                       ),
                     ),
                   ),

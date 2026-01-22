@@ -52,16 +52,16 @@ const String emptySVGIcon = '''
 ''';
 
 const Map<String, int> defaultFluttermojiOptions = {
-  'topType': 13,
+  'topType': 3,
   'accessoriesType': 0,
-  'hairColor': 1,
+ // 'hairColor': 1,
   'facialHairType': 0,
   'facialHairColor': 1,
-  'clotheType': 4,
-  'eyeType': 6,
-  'eyebrowType': 10,
-  'mouthType': 8,
-  'skinColor': 3,
+  'clotheType': 3,
+  'eyeType': 1,
+  'eyebrowType': 0,
+  'mouthType': 4,
+  'skinColor': 1,
   'clotheColor': 8,
   'style': 0,
   'graphicType': 0
@@ -76,17 +76,16 @@ const List<String> TopType = [
   'Bald',
   'Hat',
   'Hijab',
+  'Cap',
   'Bun',
-  'Long (Female)',
-  'Curvy',
+ // 'Long (Female)',
   'LongHairStraight2',
   'LongHairStraightStrand',
-  'Curly (Female)',
-  'Frida',
-  'Fro w/ band',
+  // 'Curly (Female)',
+  // 'Frida',
+  // 'Fro w/ band',
   'WinterHat2',
   'Santa Hat',
-  'Cap'
 ];
 
 const List<String> AccessoriesType = [
@@ -152,17 +151,17 @@ const List<String> FacialHairColor = [
 
 const List<String> ClotheType = [
   'Crew Neck Tee',
-  'GraphicShirt',
+  // 'GraphicShirt',
   'Scoop-neck Tee',
   'ShirtVNeck',
   'Hoodie',
   'CollarSweater',
-  'Overall',
+  // 'Overall',
   'Blazer + T-Shirt',
   'BlazerSweater',
-  'Blue Shirt',
-  'Green Shirt',
-  'Pink Shirt',
+  // 'Blue Shirt',
+   'GreenShirt',
+  // 'Pink Shirt',
 ];
 
 const List<String> ClotheColor = [
@@ -202,11 +201,11 @@ const List<String> EyeType = [
   'Default',
   'Happy',
   'Squint',
-  'Close',
-  'Cry',
-  'Dizzy',
+  // 'Close',
+  // 'Cry',
+  // 'Dizzy',
   'EyeRoll',
-  'Hearts',
+  // 'Hearts',
   'Side',
   'Surprised',
   'Wink',
@@ -230,26 +229,26 @@ const List<String> EyebrowType = [
 ];
 
 const List<String> MouthType = [
-  'Concerned',
+  // 'Concerned',
   'Default',
-  'Sad',
-  'Disbelief',
+  // 'Sad',
+  // 'Disbelief',
   'Eating',
-  'Grimace',
-  'ScreamOpen',
+  // 'Grimace',
+  // 'Screa0mOpen',
   'Serious',
   'Smile',
-  'Tongue',
+  // 'Tongue',
   'Twinkle',
-  'Vomit',
+  // 'Vomit',
 ];
 
 const List<String> SkinColor = [
   'White',
   'Peach',
-  'Black',
+  // 'Black',
   'Brown',
   'DarkBrown',
-  'Yellow',
-  'Tanned',
+  // 'Yellow',
+  // 'Tanned',
 ];

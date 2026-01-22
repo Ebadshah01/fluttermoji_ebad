@@ -65,6 +65,7 @@ class FluttermojiThemeData {
   /// See more:
   /// * [FluttermojiThemeData.standard] which is applied by default to the widgets.
   FluttermojiThemeData({
+    double? borderRadius,
     TextStyle? labelTextStyle,
     Color? primaryBgColor,
     Color? secondaryBgColor,
@@ -93,7 +94,7 @@ class FluttermojiThemeData {
             ),
         this.unselectedTileDecoration = unselectedTileDecoration,
         this.boxDecoration = boxDecoration ??
-            BoxDecoration(borderRadius: BorderRadius.circular(18)),
+            BoxDecoration(borderRadius: BorderRadius.circular(borderRadius ?? 0)),
         this.labelTextStyle = labelTextStyle ??
             const TextStyle(fontWeight: FontWeight.w600, color: Colors.black),
         this.scrollPhysics = scrollPhysics ?? const ClampingScrollPhysics(),
