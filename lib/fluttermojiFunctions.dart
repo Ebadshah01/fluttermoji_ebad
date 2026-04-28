@@ -20,9 +20,9 @@ class FluttermojiFunctions {
     _decodedList = {
       'topType': 4,
       'accessoriesType': 0,
-      'hairColor': 1,
+      // 'hairColor': 1,
       'facialHairType': 0,
-      'facialHairColor': 1,
+      // 'facialHairColor': 1,
       'clotheType': 4,
       'eyeType': 0,
       'eyebrowType': 0,

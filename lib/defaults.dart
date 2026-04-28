@@ -5,9 +5,7 @@
 /// are indicative of that.
 const List<String> defaultAttributeIcons = [
   "attributeicons/hair.svg",
-  "attributeicons/haircolor.svg",
   "attributeicons/beard.svg",
-  "attributeicons/beardcolor.svg",
   "attributeicons/outfit.svg",
   "attributeicons/outfitcolor.svg",
   "attributeicons/eyes.svg",
@@ -21,9 +19,7 @@ const List<String> defaultAttributeIcons = [
 /// which attribute the user is customizing.
 const List<String> defaultAttributeTitles = [
   "Hairstyle",
-  "Hair Colour",
   "Facial Hair",
-  "Facial Hair Colour",
   "Outfit",
   "Outfit Colour",
   "Eyes",
@@ -39,9 +35,7 @@ const List<String> defaultAttributeTitles = [
 /// This aspect is not modifiable by you at any stage of the app.
 const List<String> attributeKeys = [
   "topType",
-  "hairColor",
   "facialHairType",
-  "facialHairColor",
   "clotheType",
   "clotheColor",
   "eyeType",

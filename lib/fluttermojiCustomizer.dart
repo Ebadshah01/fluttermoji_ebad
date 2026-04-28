@@ -35,6 +35,8 @@ class FluttermojiCustomizer extends StatefulWidget {
     List<String>? attributeTitles,
     List<String>? attributeIcons,
     this.autosave = true,
+    this.selectedTabColor,
+    this.selectedTabShadowColor,
   })  : assert(
           attributeTitles == null || attributeTitles.length == attributesCount,
           "List of Attribute Titles must be of length $attributesCount.\n"
@@ -85,7 +87,13 @@ class FluttermojiCustomizer extends StatefulWidget {
   /// in your app to let users save their selection manually.
   final bool autosave;
 
-  static const int attributesCount = 11;
+  /// The main color of the selected tab
+  final Color? selectedTabColor;
+
+  /// The shadow (bottom) color of the selected tab
+  final Color? selectedTabShadowColor;
+
+  static const int attributesCount = 9;
 
   @override
   _FluttermojiCustomizerState createState() => _FluttermojiCustomizerState();
@@ -95,7 +103,7 @@ class _FluttermojiCustomizerState extends State<FluttermojiCustomizer>
     with SingleTickerProviderStateMixin {
   late FluttermojiController fluttermojiController;
   late TabController tabController;
-  final attributesCount = 11;
+  final attributesCount = 9;
   var heightFactor = 0.4, widthFactor = 0.95;
 
   @override
@@ -149,14 +157,11 @@ class _FluttermojiCustomizerState extends State<FluttermojiCustomizer>
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
-    return
-     SizedBox(
+    return SizedBox(
       height: widget.scaffoldHeight ?? (size.height * heightFactor),
       width: widget.scaffoldWidth ?? size.width,
-      child:       
-      body(
+      child: body(
         attributes: List<AttributeItem>.generate(
-          
             attributesCount,
             (index) => AttributeItem(
                 iconAsset: widget.attributeIcons[index],
@@ -189,14 +194,14 @@ class _FluttermojiCustomizerState extends State<FluttermojiCustomizer>
       child: TabBar(
         tabAlignment: TabAlignment.start,
         // indicatorWeight: 1,
-              dividerHeight: 0,
-              controller: tabController,
-              isScrollable: true,
-              // labelPadding: EdgeInsets.zero,
-              // labelPadding: const EdgeInsets.symmetric(horizontal: 0),
-              indicatorColor: Colors.transparent,
-              tabs: navbarWidgets,
-            ),
+        dividerHeight: 0,
+        controller: tabController,
+        isScrollable: true,
+        // labelPadding: EdgeInsets.zero,
+        // labelPadding: const EdgeInsets.symmetric(horizontal: 0),
+        indicatorColor: Colors.transparent,
+        tabs: navbarWidgets,
+      ),
       // Row(
       //   children: [
       //     // arrowButton(true),
@@ -283,7 +288,7 @@ class _FluttermojiCustomizerState extends State<FluttermojiCustomizer>
         physics: widget.theme.scrollPhysics,
         scrollDirection: Axis.horizontal,
         itemCount: attributeListLength,
-        itemBuilder: (BuildContext context, int index) => InkWell(
+        itemBuilder: (BuildContext context, int index) => GestureDetector(
           onTap: () => onTapOption(index, i, attribute),
           child: Container(
             width: size.width / 4,
@@ -300,7 +305,7 @@ class _FluttermojiCustomizerState extends State<FluttermojiCustomizer>
                 child: CupertinoActivityIndicator(),
               ),
             ),
-          ).paddingOnly(left: 8,top: 30),
+          ).paddingOnly(left: 8, top: 30),
         ),
       );
 
@@ -313,17 +318,17 @@ class _FluttermojiCustomizerState extends State<FluttermojiCustomizer>
                 Positioned.fill(
                   child: Container(
                     decoration: BoxDecoration(
-                      color: const Color(0xFF615ABE),
+                      color: widget.selectedTabShadowColor ?? const Color(0xFF615ABE),
                       borderRadius: BorderRadius.circular(12),
                     ),
                   ),
                 ),
                 Container(
-                  margin: const EdgeInsets.only(bottom: 5.0),
+                  margin: const EdgeInsets.only(bottom: 3.0),
                   padding:
                       const EdgeInsets.symmetric(vertical: 6.0, horizontal: 12),
                   decoration: BoxDecoration(
-                    color: const Color(0xFF8275E3),
+                    color: widget.selectedTabColor ?? const Color(0xFF8275E3),
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: Row(

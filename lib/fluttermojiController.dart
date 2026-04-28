@@ -81,7 +81,7 @@ class FluttermojiController extends GetxController {
           "DEBUG: propertyItem title: ${propertyItem.title}, property list length: ${propertyItem.property?.length}");
     }
 
-    var index = selectedOptions[type];
+    var index = selectedOptions[type] ?? defaultFluttermojiOptions[type];
     print("DEBUG: selectedOptions[$type] = $index");
 
     return propertyItem!.property!.elementAt(index as int);
@@ -210,7 +210,8 @@ xmlns:xlink="http://www.w3.org/1999/xlink">
         return '''<svg width="100px" height="120px" viewBox="30 100 200 250" >''' +
             Clothes.generateClothes(
                 clotheType: ClotheType.elementAt(attributeValueIndex!),
-                clColor: ClotheColor[selectedOptions['clotheColor']])! +
+                clColor: ClotheColor[selectedOptions['clotheColor'] ??
+                    defaultFluttermojiOptions['clotheColor']])! +
             '''</svg>''';
 
       case 'clotheColor':
@@ -224,7 +225,8 @@ xmlns:xlink="http://www.w3.org/1999/xlink">
         return '''<svg width="20px" width="100px" height="100px" viewBox="10 10 250 250">''' +
             HairStyle.generateHairStyle(
                 hairType: TopType[attributeValueIndex!],
-                hColor: HairColor[selectedOptions['hairColor']])! +
+                hColor: HairColor[selectedOptions['hairColor'] ??
+                    defaultFluttermojiOptions['hairColor']])! +
             '''</svg>''';
 
       case 'hairColor':
@@ -238,7 +240,8 @@ xmlns:xlink="http://www.w3.org/1999/xlink">
         return '''<svg width="20px" height="20px" viewBox="0 -40 112 180" >''' +
             FacialHair.generateFacialHair(
                 facialHairType: FacialHairType[attributeValueIndex!],
-                fhColor: FacialHairColor[selectedOptions['facialHairColor']])! +
+                fhColor: FacialHairColor[selectedOptions['facialHairColor'] ??
+                    defaultFluttermojiOptions['facialHairColor']])! +
             '''</svg>''';
 
       case 'facialHairColor':
