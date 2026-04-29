@@ -93,7 +93,7 @@ class FluttermojiCustomizer extends StatefulWidget {
   /// The shadow (bottom) color of the selected tab
   final Color? selectedTabShadowColor;
 
-  static const int attributesCount = 9;
+  static const int attributesCount = 7;
 
   @override
   _FluttermojiCustomizerState createState() => _FluttermojiCustomizerState();
@@ -103,7 +103,7 @@ class _FluttermojiCustomizerState extends State<FluttermojiCustomizer>
     with SingleTickerProviderStateMixin {
   late FluttermojiController fluttermojiController;
   late TabController tabController;
-  final attributesCount = 9;
+  final attributesCount = 7;
   var heightFactor = 0.4, widthFactor = 0.95;
 
   @override

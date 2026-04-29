@@ -151,10 +151,10 @@ xmlns:xlink="http://www.w3.org/1999/xlink">
         '''<path d="M156,79 L156,102 C156,132.927946 130.927946,158 100,158 C69.072054,158 44,132.927946 44,102 L44,79 L44,94 C44,124.927946 69.072054,150 100,150 C130.927946,150 156,124.927946 156,94 L156,79 Z" id="Neck-Shadow" opacity="0.100000001" fill="#000000" mask="url(#mask-6)"></path></g>''' +
         _clothe +
         '''<g id="Face" transform="translate(76.000000, 82.000000)" fill="#000000">''' +
-        _mouth +
+        // _mouth +
         _facialhair +
         _nose +
-        _eyes +
+        // _eyes +
         _eyebrows +
         _accessory +
         '''</g>''' +

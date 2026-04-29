@@ -8,9 +8,9 @@ const List<String> defaultAttributeIcons = [
   "attributeicons/beard.svg",
   "attributeicons/outfit.svg",
   "attributeicons/outfitcolor.svg",
-  "attributeicons/eyes.svg",
+  // "attributeicons/eyes.svg",
   "attributeicons/eyebrow.svg",
-  "attributeicons/mouth.svg",
+  // "attributeicons/mouth.svg",
   "attributeicons/skin.svg",
   "attributeicons/accessories.svg",
 ];
@@ -22,9 +22,9 @@ const List<String> defaultAttributeTitles = [
   "Facial Hair",
   "Outfit",
   "Outfit Colour",
-  "Eyes",
+  // "Eyes",
   "Eyebrows",
-  "Mouth",
+  // "Mouth",
   "Skin",
   "Accessories"
 ];
@@ -38,9 +38,9 @@ const List<String> attributeKeys = [
   "facialHairType",
   "clotheType",
   "clotheColor",
-  "eyeType",
+  // "eyeType",
   "eyebrowType",
-  "mouthType",
+  // "mouthType",
   "skinColor",
   "accessoriesType",
 ];
