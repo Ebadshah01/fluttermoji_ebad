@@ -57,7 +57,7 @@ const Map<String, int> defaultFluttermojiOptions = {
   'hairColor': 1,
   'facialHairType': 0,
   'facialHairColor': 1,
-  'clotheType': 3,
+  'clotheType': 2,
   'eyeType': 1,
   'eyebrowType': 0,
   'mouthType': 3,
@@ -152,15 +152,15 @@ const List<String> FacialHairColor = [
 const List<String> ClotheType = [
   'Crew Neck Tee',
   // 'GraphicShirt',
-  'Scoop-neck Tee',
-  'ShirtVNeck',
+  // 'Scoop-neck Tee',
+  // 'ShirtVNeck',
   'Hoodie',
   'CollarSweater',
   // 'Overall',
   'Blazer + T-Shirt',
   'BlazerSweater',
   // 'Blue Shirt',
-   'GreenShirt',
+  //  'GreenShirt',
   // 'Pink Shirt',
 ];
 
