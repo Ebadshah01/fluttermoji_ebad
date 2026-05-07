@@ -87,11 +87,11 @@ class FluttermojiCustomizer extends StatefulWidget {
   /// in your app to let users save their selection manually.
   final bool autosave;
 
-  /// The main color of the selected tab
-  final Color? selectedTabColor;
+  /// The main color or gradient of the selected tab
+  final dynamic selectedTabColor;
 
-  /// The shadow (bottom) color of the selected tab
-  final Color? selectedTabShadowColor;
+  /// The shadow (bottom) color or gradient of the selected tab
+  final dynamic selectedTabShadowColor;
 
   static const int attributesCount = 7;
 
@@ -318,7 +318,14 @@ class _FluttermojiCustomizerState extends State<FluttermojiCustomizer>
                 Positioned.fill(
                   child: Container(
                     decoration: BoxDecoration(
-                      color: widget.selectedTabShadowColor ?? const Color(0xFF615ABE),
+                      color: widget.selectedTabShadowColor is Color
+                          ? widget.selectedTabShadowColor
+                          : (widget.selectedTabShadowColor is Gradient
+                              ? null
+                              : const Color(0xFF615ABE)),
+                      gradient: widget.selectedTabShadowColor is Gradient
+                          ? widget.selectedTabShadowColor
+                          : null,
                       borderRadius: BorderRadius.circular(12),
                     ),
                   ),
@@ -328,7 +335,14 @@ class _FluttermojiCustomizerState extends State<FluttermojiCustomizer>
                   padding:
                       const EdgeInsets.symmetric(vertical: 6.0, horizontal: 12),
                   decoration: BoxDecoration(
-                    color: widget.selectedTabColor ?? const Color(0xFF8275E3),
+                    color: widget.selectedTabColor is Color
+                        ? widget.selectedTabColor
+                        : (widget.selectedTabColor is Gradient
+                            ? null
+                            : const Color(0xFF8275E3)),
+                    gradient: widget.selectedTabColor is Gradient
+                        ? widget.selectedTabColor
+                        : null,
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: Row(
